@@ -12,6 +12,7 @@
                     <tr class="bg-primary">
                         <th>Id</th>
                         <th>Id Tunjangan Pegawai</th>
+                        <th>Jumlah Jam Lembur </th>
                         <th>Jumlah Uang Lembur</th>
                         <th>Gaji Pokok</th>
                         <th>Total Gaji</th>
@@ -28,6 +29,7 @@
                     <tr> 
                         <td> {{$id++}} </td>
                         <td> {{$data->tunjangan_pegawai_id}} </td>
+                        <td> {{$data->jumlah_jam_lembur }} </td>
                         <td> {{$data->jumlah_uang_lembur}} </td>
                         <td> {{$data->gaji_pokok}} </td>
                         <td> {{$data->total_gaji}} </td>

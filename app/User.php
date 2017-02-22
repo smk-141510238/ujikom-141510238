@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
     public function pegawai()
     {
-        return $this->hasMany('App\User','id_user');
+        return $this->hasOne('App\User','id_user');
     }
 }

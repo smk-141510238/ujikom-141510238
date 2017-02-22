@@ -4,7 +4,7 @@
     
 <div class="container">
     <div class="panel panel-primary">
-        <div class="panel-heading">Tambah Data Kategori Lembur</div>
+        <div class="panel-heading">Tambah Data</div>
         <div class="panel-body">
             <form method="POST" action="{{url('penggajian')}}">
                 {{csrf_field()}}
@@ -20,6 +20,11 @@
                         </div>
                     </div>
                     
+                <div class="form-group">
+                    <label>Jumlah Jam Lembur</label>
+                    <input class="form-control" type="text" name="jumlah_jam_lembur" placeholder="Masukkan Petugas Penerima">
+                </div>
+
                 <div class="form-group">
                     <label>Jumlah Uang Lembur</label>
                     <input class="form-control" type="text" name="jumlah_uang_lembur" placeholder="Masukkan jumlah uang lembur ">

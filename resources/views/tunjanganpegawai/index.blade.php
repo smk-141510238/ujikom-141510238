@@ -23,7 +23,7 @@
                     <tr> 
                         <td> {{$id++}} </td>    
                         <td> {{$data->tunjangan->kode_tunjangan_id }} </td>
-                        <td> {{$data->pegawai->User->name}} </td>
+                        <td> {{$data->id_user}} </td>
                         <td><a href="{{route('tunjanganpegawai.edit',$data->id)}}" class="btn btn-warning">Edit</a></td>
                        <td>
                         {!! Form::open(['method' => 'DELETE', 'route'=>['tunjanganpegawai.destroy', $data->id]]) !!}

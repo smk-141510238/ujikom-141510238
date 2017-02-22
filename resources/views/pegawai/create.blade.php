@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('pegawai.store') }}" enctype="multipart/form-data" file="true">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('pegawai.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -98,35 +98,34 @@
                                     </span>
                                 @endif
                             </div>
-                        </div><br>
+                        </div><br><br>
 
                     <div class="form-group{{ $errors->has('id_jabatan') ? ' has-error' : '' }}">
-                            <label for="id_jabatan" class="col-md-4 control-label">Id Jabatan</label>
+                    <div class="control-group">
+                        <label for="id_jabatan" class="col-md-4 control-label" >Jabatan</label>
+                        <div class="col-md-6">
 
-                            <div class="col-md-6">
-                                <input id="id_jabatan" type="text" class="form-control" name="id_jabatan" value="{{ old('id_jabatan') }}" required autofocus>
+                            <select class="form-control" name="id_jabatan">
+                                @foreach ($jabatan as $data)
+                                <option value="{{ $data->id }}">{{ $data->nama_jabatan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div><br><br>
 
-                                @if ($errors->has('id_jabatan'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('id_jabatan') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div><br>
+                    <div class="form-group{{ $errors->has('id_golongan') ? ' has-error' : '' }}">
+                    <div class="control-group">
+                        <label for="id_golongan" class="col-md-4 control-label" >Golongan</label>
+                        <div class="col-md-6">
 
-                       <div class="form-group{{ $errors->has('id_golongan') ? ' has-error' : '' }}">
-                            <label for="id_golongan" class="col-md-4 control-label">Id Golongan</label>
+                            <select class="form-control" name="id_golongan">
+                                @foreach ($golongan as $data)
+                                <option value="{{ $data->id }}">{{ $data->nama_golongan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div><br><br>
 
-                            <div class="col-md-6">
-                                <input id="id_golongan" type="text" class="form-control" name="id_golongan" value="{{ old('id_golongan') }}" required autofocus>
-
-                                @if ($errors->has('id_golongan'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('id_golongan') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div><br>
 
                         <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }}">
                             <label for="foto" class="col-md-4 control-label">Photo</label>

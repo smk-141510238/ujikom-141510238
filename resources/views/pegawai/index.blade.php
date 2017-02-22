@@ -31,7 +31,7 @@
                         <td> {{$data->User->email}} </td>
                         <td> {{$data->jabatan->nama_jabatan}} </td>
                         <td> {{$data->golongan->nama_golongan}} </td>
-                        <td><img src="{{asset('/assets/image/pegawai/'.$data->foto.'')}}" height="100px" width="100px"></td>
+                        <td>  <img src = "{{asset('/image'.$data->foto )}}" height="35" width="35"></td>
                         <td><a href="{{route('pegawai.edit',$data->id)}}" class="btn btn-warning">Edit</a></td>
                         <td>
                         {!! Form::open(['method' => 'DELETE', 'route'=>['pegawai.destroy', $data->id]]) !!}

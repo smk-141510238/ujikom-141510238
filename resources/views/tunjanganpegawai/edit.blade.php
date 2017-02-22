@@ -11,7 +11,7 @@
                     {!! Form::model($tunjanganpegawai,['method' => 'PATCH','route'=>['tunjanganpegawai.update',$tunjanganpegawai->id]]) !!}
                 <div class="form-group">
                     {!! Form::label('kode_tunjangan_id', 'Kode Tunjangan') !!}
-                    {!! Form::text('kode_tunjangan',$tunjanganpegawai->kode_tunjangan_id,['class'=>'form-control']) !!}
+                    {!! Form::text('kode_tunjangan_id',$tunjanganpegawai->kode_tunjangan_id,['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">

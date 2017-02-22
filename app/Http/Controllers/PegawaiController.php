@@ -8,10 +8,11 @@ use App\pegawai;
 use App\User;
 use App\Form;
 use Input;
+use Illuminate\Http\Request;
+
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
@@ -24,7 +25,7 @@ class PegawaiController extends Controller
     public function index()
     {
         //
-        $pegawai = pegawai::with('jabatan','golongan','user');
+        $pegawai = pegawai::all();
         return view ('pegawai.index', compact('pegawai'));
        
     }
@@ -36,10 +37,10 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $user = User::all();
+        $pegawai = pegawai::all();
         $golongan = golongan::all();
         $jabatan = jabatan::all();
-        return view ('pegawai.create', compact('golongan','jabatan','user'));
+        return view ('pegawai.create', compact('pegawai','golongan','jabatan'));
     }
 
     /**
@@ -67,23 +68,22 @@ class PegawaiController extends Controller
                 ]);
 
                 $file=Input::file('foto');
-                $destinationPath = public_path().'/assets/image/pegawai';
-                $filename = str_random(6).'_'.$file->getClientOriginalName();
+                $destinationPath = public_path().'/image';
+                $filename = str_random(6)-'_'.$file->getClientOriginalName();
                 $uploadsucces=$file->move($destinationPath,$filename);
-                if (Input::hasFile('foto'))
+                if(Input::hasfile('foto'))
                 {
                 $pegawai = new pegawai;
-                $pegawai->nip = $request->get('nip');
-                $pegawai->id_jabatan= $request->get('id_jabatan');
-                $pegawai->id_golongan = $request->get('id_golongan');
+                $pegawai->nip = Input::get('nip');
+                $pegawai->id_jabatan= Input::get('id_jabatan');
+                $pegawai->id_golongan = Input::get('id_golongan');
+                $pegawai->foto = Input::get('foto');
                 $pegawai->id_user = $user->id;
-                $pegawai->foto = $filename;
                 $pegawai->save();
-                return redirect('/pegawai');
                 }
-
+                return redirect('/pegawai');
+     }  
             
-    }
 
     /**
      * Display the specified resource.
