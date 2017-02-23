@@ -26,6 +26,15 @@ class PegawaiController extends Controller
     {
         //
         $pegawai = pegawai::all();
+        $pegawai = pegawai::where('nip', request('nip'))->paginate(100);
+        if(request()->has('nip'))
+        {
+            $pegawai = pegawai::where('nip', request('nip'))->paginate(100);
+        }
+        else
+        {
+            $pegawai =pegawai::paginate(100);
+        }
         return view ('pegawai.index', compact('pegawai'));
        
     }
@@ -67,22 +76,25 @@ class PegawaiController extends Controller
                     'password' => bcrypt($request->get('password')),
                 ]);
 
-                $file=Input::file('foto');
-                $destinationPath = public_path().'/image';
-                $filename = str_random(6)-'_'.$file->getClientOriginalName();
-                $uploadsucces=$file->move($destinationPath,$filename);
-                if(Input::hasfile('foto'))
-                {
-                $pegawai = new pegawai;
-                $pegawai->nip = Input::get('nip');
-                $pegawai->id_jabatan= Input::get('id_jabatan');
-                $pegawai->id_golongan = Input::get('id_golongan');
-                $pegawai->foto = Input::get('foto');
-                $pegawai->id_user = $user->id;
-                $pegawai->save();
-                }
+        $file = Input::file('foto');
+        $destinationPath = public_path().'/assets/image/';
+        $filename = $file->getClientOriginalName();
+        $uploadSuccess = $file->move($destinationPath, $filename);
+
+        if(Input::hasFile('foto')){
+        $pegawai= new pegawai;
+        $pegawai->nip=Input::get('nip');
+        $pegawai->id_jabatan =Input::get('id_jabatan');
+        $pegawai->id_golongan=Input::get('id_golongan');
+        $pegawai->id_user =$user->id;
+        $pegawai->foto = $filename;
+        $pegawai->save();
+
                 return redirect('/pegawai');
-     }  
+
+          
+          }  
+    }
             
 
     /**
@@ -104,7 +116,10 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
-        //
+          $jabatan=jabatan::all();
+          $golongan = golongan::all();
+          $pegawai = pegawai::find($id);
+        return view('pegawai.edit',compact('jabatan','golongan','pegawai')); 
     }
 
     /**
@@ -114,9 +129,12 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
-        //
+        $dataUpdate=Input::all();
+        $pegawai=pegawai::find($id);
+        $pegawai->update($dataUpdate);
+        return redirect('/pegawai');
     }
 
     /**

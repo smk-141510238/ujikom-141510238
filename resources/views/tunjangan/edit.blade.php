@@ -11,26 +11,44 @@
                     {!! Form::model($tunjangan,['method' => 'PATCH','route'=>['tunjangan.update',$tunjangan->id]]) !!}
                 <div class="form-group">
                     {!! Form::label('kode_tunjangan', 'Kode Tunjangan : ') !!}
-                    {!! Form::text('kode_tunjangan',$tunjangan->kode_tunjangan,['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('id_jabatan', 'Jabatan : ') !!}
-                    {!! Form::text('nama_golongan',$tunjangan->nama_golongan,['class'=>'form-control']) !!}
+                    {!! Form::text('kode_tunjangan',null,['class'=>'form-control']) !!}
                 </div>
 
-                <div class="form-group">
-                    {!! Form::label('id_golongan', 'Golongan : ') !!}
-                    {!! Form::text('nama_golongan',$tunjangan->nama_golongan,['class'=>'form-control']) !!}
+                 <div class="control-group">
+                        <label class="control-label">Id Jabatan</label>
+                        <div class="controls">
+                            <select class="span11" name="id_jabatan">
+                                @foreach ($jabatan as $data)
+                                <option value="{{ $data->id }}">{{ $data->nama_jabatan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                <div class="control-group">
+                        <label class="control-label">Id Golongan</label>
+                        <div class="controls">
+                            <select class="span11" name="id_golongan">
+                                @foreach ($golongan as $data)
+                                <option value="{{ $data->id }}">{{ $data->nama_golongan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                 <div class="form-group">
+                    {!! Form::label('jumlah_anak', 'Jumlah anak : ') !!}
+                    {!! Form::text('jumlah_anak',null,['class'=>'form-control']) !!}
                 </div>
 
                  <div class="form-group">
                     {!! Form::label('status', 'Status : ') !!}
-                    {!! Form::text('status',$tunjangan->status,['class'=>'form-control']) !!}
+                    {!! Form::text('status',null,['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('besaran_uang', 'Besaran Uang : ') !!}
-                    {!! Form::text('besaran_uang',$tunjangan->besaran_uang,['class'=>'form-control']) !!}
+                    {!! Form::text('besaran_uang',null,['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">

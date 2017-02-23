@@ -18,6 +18,15 @@ class JabatanController extends Controller
     public function index()
     {
         $jabatan = jabatan::all();
+        $jabatan = jabatan::where('nama_jabatan', request('nama_jabatan'))->paginate(0);
+        if(request()->has('nama_jabatan'))
+        {
+            $jabatan=jabatan::where('nama_jabatan', request('nama_jabatan'))->paginate(0);
+        }
+        else
+        {
+            $jabatan=jabatan::paginate(3);
+        }
         return view ('jabatan.index', compact('jabatan'));
 
     }

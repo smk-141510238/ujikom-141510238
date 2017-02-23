@@ -7,6 +7,9 @@
         <div class="panel-heading">Tunjangan Pegawai</div>
         <div class="panel-body">
         <a class="btn btn-success" href="{{url('tunjanganpegawai/create')}}">Tambah Data</a><br><br>
+            <form action="{{url('tunjanganpegawai')}}}//?kode_tunjangan_id=kode_tunjangan_id">
+                <input type="text" name="kode_tunjangan_id" placeholder="masukkan kode">
+            </form><br>
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-primary">

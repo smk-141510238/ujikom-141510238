@@ -17,6 +17,15 @@ class TunjanganpegawaiController extends Controller
     public function index()
     {
         $tunjanganpegawai = tunjangan_pegawai::with('tunjangan','pegawai')->get();
+        $tunjanganpegawai = tunjangan_pegawai::where('kode_tunjangan_id', request('kode_tunjangan_id'))->paginate(0);
+        if(request()->has('kode_tunjangan_id'))
+        {
+            $tunjanganpegawai = tunjangan_pegawai::where('kode_tunjangan_id', request('kode_tunjangan_id'))->paginate(0);
+        }
+        else
+        {
+            $tunjanganpegawai = tunjangan_pegawai::paginate(3);
+        }
         return view ('tunjanganpegawai.index', compact('tunjanganpegawai'));
     }
 

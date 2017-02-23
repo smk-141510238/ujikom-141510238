@@ -7,6 +7,9 @@
         <div class="panel-heading">Lembur Pegawai</div>
         <div class="panel-body">
         <a class="btn btn-success" href="{{url('lemburpegawai/create')}}">Tambah Data</a><br><br>
+            <form action="{{url('lemburpegawai')}}//?kode_lembur_id=kode_lembur_id">
+                <input type="text" name="kode_lembur_id" placeholder="masukkan kode">
+            </form><br>
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-primary">

@@ -16,7 +16,7 @@ class PenggajianController extends Controller
     public function index()
     {
         //
-        $penggajian = penggajian::all();
+        $penggajian = penggajian::with('tunjangan_pegawai')->get();
         return view ('penggajian.index', compact('penggajian'));
     }
 
@@ -30,7 +30,7 @@ class PenggajianController extends Controller
         //
         $penggajian = penggajian::all();
         $tunjanganpegawai = tunjangan_pegawai::all();
-        return view ('tunjanganpegawai.create', compact('tunjanganpegawai','pegawai'));
+        return view ('tunjanganpegawai.create', compact('tunjanganpegawai','penggajian'));
     }
 
     /**
