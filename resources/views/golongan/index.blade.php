@@ -7,8 +7,14 @@
         <div class="panel-heading">Golongan</div>
         <div class="panel-body">
         <a class="btn btn-success" href="{{url('golongan/create')}}">Tambah Data</a><br><br>
-            <form action="{{url('golongan')}}//?nama_golongan=nama_golongan" >
-                <input type="text" name="nama_golongan" placeholder="masukkan nama golongan" >
+        <div class="form-group" ><center>
+            <form class="form-search" >
+                <p class="text-left">
+                   <form action="{{url('golongan')}}//?nama_golongan=nama_golongan" >
+                        <input type="text" name="nama_golongan" placeholder="masukkan nama golongan" >
+                        <button type="submit" class="btn btn-info" >cari</button>
+                    </form>
+                </p>
             </form>
         </div>
             <table class="table table-striped table-bordered table-hover">

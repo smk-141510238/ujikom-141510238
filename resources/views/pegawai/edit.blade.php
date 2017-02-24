@@ -4,7 +4,7 @@
 	
 <div class="container">
 	<div class="panel panel-primary">
-		<div class="panel-heading">Tambah Data Pegawai</div>
+		<div class="panel-heading">Edit Data Pegawai</div>
 		<div class="panel-body">
 			 {!! Form::model($pegawai,['method' => 'PATCH','route'=>['pegawai.update',$pegawai->id]]) !!}
 			 			

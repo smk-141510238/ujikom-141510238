@@ -16,7 +16,9 @@ class LemburpegawaiController extends Controller
      */
     public function index()
     {
-        $lemburpegawai = lembur_pegawai::with('kategori_lembur','pegawai')->get();
+        $lemburpegawai = lembur_pegawai::all();
+         $kategori = kategori_lembur::all();
+          $pegawai = pegawai::all();
         $lemburpegawai = lembur_pegawai::where('kode_lembur_id', request('kode_lembur_id'))->paginate(0);
         if(request()->has('kode_lembur_id'))
         {
@@ -26,7 +28,7 @@ class LemburpegawaiController extends Controller
         {
             $lemburpegawai = lembur_pegawai::paginate(0);
         }
-        return view('lemburpegawai.index', compact('lemburpegawai'));
+        return view('lemburpegawai.index', compact('lemburpegawai','kategori','pegawai'));
     }
 
     /**
@@ -38,9 +40,9 @@ class LemburpegawaiController extends Controller
     {
         //
    
-        $kategori = kategori_lembur::all();
-        $pegawai = pegawai::all();
-        $lemburpegawai = lembur_pegawai::all();
+       $lemburpegawai = lembur_pegawai::all();
+         $kategori = kategori_lembur::all();
+          $pegawai = pegawai::all();
         return view ('lemburpegawai.create', compact('lemburpegawai','kategori','pegawai'));
     }
 

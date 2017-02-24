@@ -7,8 +7,14 @@
         <div class="panel-heading">Kategori Lembur</div>
         <div class="panel-body">
         <a class="btn btn-success" href="{{url('kategori/create')}}">Tambah Data</a><br><br>
-        <form action="{{url('kategori')}}//?kode_lembur=kode_lembur">
+        <div class="form-group" ><center>
+            <form class="form-search" >
+                <p class="text-left">
+                   <form action="{{url('kategori')}}//?kode_lembur=kode_lembur">
             <input type="text" name="kode_lembur" placeholder="masukkan kodelembur">
+                        <button type="submit" class="btn btn-info" >cari</button>
+                    </form>
+                </p>
             </form>
         </div>
             <table class="table table-striped table-bordered table-hover">

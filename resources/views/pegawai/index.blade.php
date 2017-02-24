@@ -7,9 +7,18 @@
         <div class="panel-heading">Pegawai</div>
         <div class="panel-body">
         <a class="btn btn-success" href="{{url('pegawai/create')}}">Tambah Data</a><br><br>
-        <form action="{{url('pegawai')}}//?nip=nip">
-            <input type="text" name="nip" placeholder="masukkan nip">
-        </form><br>
+        <div class="form-group" ><center>
+            <form class="form-search" >
+                <p class="text-left">
+                   <form action="{{url('pegawai')}}//?nip=nip">
+                        <input type="text" name="nip" placeholder="masukkan nip">
+                        <button type="submit" class="btn btn-info" >cari</button>
+                    </form>
+                </p>
+            </form>
+        </div>
+            <br>
+
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-primary">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\tunjangan_pegawai;
 use App\pegawai;
 use App\tunjangan;
+use App\jabatan;
+use App\golongan;
 use Request;
 
 class TunjanganpegawaiController extends Controller
@@ -16,17 +18,12 @@ class TunjanganpegawaiController extends Controller
      */
     public function index()
     {
-        $tunjanganpegawai = tunjangan_pegawai::with('tunjangan','pegawai')->get();
-        $tunjanganpegawai = tunjangan_pegawai::where('kode_tunjangan_id', request('kode_tunjangan_id'))->paginate(0);
-        if(request()->has('kode_tunjangan_id'))
-        {
-            $tunjanganpegawai = tunjangan_pegawai::where('kode_tunjangan_id', request('kode_tunjangan_id'))->paginate(0);
-        }
-        else
-        {
-            $tunjanganpegawai = tunjangan_pegawai::paginate(3);
-        }
-        return view ('tunjanganpegawai.index', compact('tunjanganpegawai'));
+       $tunjanganpegawai = tunjangan_pegawai::all();
+       $tunjangan = tunjangan::all();
+       $jabatan = jabatan::all();
+       $golongan = golongan::all();
+       $pegawai = pegawai::all();
+       return view ('tunjanganpegawai.index', compact('tunjanganpegawai','tunjangan','jabatan','golongan','pegawai'));
     }
 
     /**
@@ -36,9 +33,12 @@ class TunjanganpegawaiController extends Controller
      */
     public function create()
     {
-         $tunjangan = tunjangan::all();
-         $pegawai = pegawai::all();
-         return view ('tunjanganpegawai.create', compact('pegawai','tunjangan')); 
+       $tunjanganpegawai = tunjangan_pegawai::all();
+       $tunjangan = tunjangan::all();
+       $jabatan = jabatan::all();
+       $golongan = golongan::all();
+       $pegawai = pegawai::all();
+       return view ('tunjanganpegawai.index', compact('tunjanganpegawai','tunjangan','jabatan','golongan','pegawai'));
     }
 
     /**
@@ -50,8 +50,13 @@ class TunjanganpegawaiController extends Controller
     public function store(Request $request)
     {
         $tunjanganpegawai=Request::all();
+        $tunjangan = tunjangan::all();
+        $jabatan = jabatan::all();
+        $golongan = golongan::all();
+        $pegawai = pegawai::all();
         tunjangan_pegawai::create($tunjanganpegawai);
         return redirect('tunjanganpegawai');
+    
     }
 
     /**
@@ -73,8 +78,12 @@ class TunjanganpegawaiController extends Controller
      */
     public function edit($id)
     {
-        $tunjanganpegawai = tunjangan_pegawai::find($id);
-        return view('tunjanganpegawai.edit',compact('tunjanganpegawai'));
+        $tunjangan = tunjangan::all();
+        $jabatan = jabatan::all();
+        $golongan = golongan::all();
+        $pegawai = pegawai::all();
+        $tunjanganpegawai=tunjangan_pegawai::find($id);
+        return view('tunjanganpegawai.edit',compact('tunjanganpegawai','jabatan','golongan','tunjangan','pegawai'));
     }
 
     /**

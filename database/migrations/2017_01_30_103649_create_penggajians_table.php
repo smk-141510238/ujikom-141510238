@@ -22,7 +22,7 @@ class CreatePenggajiansTable extends Migration
             $table->date('tanggal_pengambilan');
             $table->boolean('status_pengambilan')->default(0);
             $table->string('petugas_penerima'); 
-            $table->string('jumlha_jam_lembur');           
+            $table->string('jumlah_jam_lembur');           
             $table->timestamps();
         });
     }
